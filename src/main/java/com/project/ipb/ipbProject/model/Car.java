@@ -15,12 +15,12 @@ public class Car {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    private String numerRejestracyjny;
-    private String marka;
-    private String rodzajPaliwa;
-    private double pojemnoscSkokowa;
-    private double mocSeryjna;
-    private double momentObrotowySeryjny;
+    private String registrationNumber;
+    private String brand;
+    private String fuelType;
+    private double displacement; //pojemność skokowa
+    private double standardPower; //moc seryjna
+    private double standardTorque;
     private double turbo;
 
     @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -37,52 +37,52 @@ public class Car {
         this.id = id;
     }
 
-    public String getNumerRejestracyjny() {
-        return numerRejestracyjny;
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setNumerRejestracyjny(String numerRejestracyjny) {
-        this.numerRejestracyjny = numerRejestracyjny;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
-    public String getMarka() {
-        return marka;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setMarka(String marka) {
-        this.marka = marka;
+    public void setBrand(String marka) {
+        this.brand = marka;
     }
 
-    public String getRodzajPaliwa() {
-        return rodzajPaliwa;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setRodzajPaliwa(String rodzajPaliwa) {
-        this.rodzajPaliwa = rodzajPaliwa;
+    public void setFuelType(String rodzajPaliwa) {
+        this.fuelType = rodzajPaliwa;
     }
 
-    public double getPojemnoscSkokowa() {
-        return pojemnoscSkokowa;
+    public double getDisplacement() {
+        return displacement;
     }
 
-    public void setPojemnoscSkokowa(double pojemnoscSkokowa) {
-        this.pojemnoscSkokowa = pojemnoscSkokowa;
+    public void setDisplacement(double pojemnoscSkokowa) {
+        this.displacement = pojemnoscSkokowa;
     }
 
-    public double getMocSeryjna() {
-        return mocSeryjna;
+    public double getStandardPower() {
+        return standardPower;
     }
 
-    public void setMocSeryjna(double mocSeryjna) {
-        this.mocSeryjna = mocSeryjna;
+    public void setStandardPower(double mocSeryjna) {
+        this.standardPower = mocSeryjna;
     }
 
-    public double getMomentObrotowySeryjny() {
-        return momentObrotowySeryjny;
+    public double getStandardTorque() {
+        return standardTorque;
     }
 
-    public void setMomentObrotowySeryjny(double momentObrotowySeryjny) {
-        this.momentObrotowySeryjny = momentObrotowySeryjny;
+    public void setStandardTorque(double momentObrotowySeryjny) {
+        this.standardTorque = momentObrotowySeryjny;
     }
 
     public double getTurbo() {
