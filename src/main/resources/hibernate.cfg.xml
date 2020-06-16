@@ -24,6 +24,8 @@
         <mapping class="com.project.ipb.ipbProject.model.Person"/>
         <mapping class="com.project.ipb.ipbProject.model.Client"/>
         <mapping class="com.project.ipb.ipbProject.model.Car"/>
+        <mapping class="com.project.ipb.ipbProject.model.security.Privilege"/>
+        <mapping class="com.project.ipb.ipbProject.model.security.Role"/>
 <!--        <mapping class="com.project.ipb.ipbProject.model."/>-->
 
     </session-factory>

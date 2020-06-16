@@ -1,5 +1,7 @@
 package com.project.ipb.ipbProject.hibernateTools;
 
+import com.project.ipb.ipbProject.model.security.Privilege;
+import com.project.ipb.ipbProject.model.security.Role;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -16,6 +18,8 @@ public class HibernateUtil {
         try {
             if (sessionFactory == null) {
                 Configuration configuration = new Configuration().configure();
+//                configuration.addAnnotatedClass(Privilege.class);
+//                configuration.addAnnotatedClass(Role.class);
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(configuration.getProperties());
                 ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();

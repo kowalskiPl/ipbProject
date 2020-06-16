@@ -2,11 +2,10 @@ package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-@MappedSuperclass
+@Entity(name = "person")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
     @Id
     @GeneratedValue(generator = "increment")
@@ -16,6 +15,10 @@ public abstract class Person {
     protected String surname;
     protected String phoneNumber;
     protected long pesel;
+
+    //security things
+    protected String login;
+    protected String passwordHash;
 
     protected Person() {
     }
