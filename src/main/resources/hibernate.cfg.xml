@@ -21,8 +21,8 @@
 
         <mapping class="com.project.ipb.ipbProject.model.Estimate"/>
         <mapping class="com.project.ipb.ipbProject.model.Application"/>
-        <mapping class="com.project.ipb.ipbProject.model.Osoba"/>
-        <mapping class="com.project.ipb.ipbProject.model.Klient"/>
+        <mapping class="com.project.ipb.ipbProject.model.Person"/>
+        <mapping class="com.project.ipb.ipbProject.model.Client"/>
         <mapping class="com.project.ipb.ipbProject.model.Car"/>
 <!--        <mapping class="com.project.ipb.ipbProject.model."/>-->
 

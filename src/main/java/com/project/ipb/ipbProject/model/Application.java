@@ -16,7 +16,7 @@ public class Application {
     private long id;
 
     @ManyToOne
-    private Klient klient;
+    private Client client;
     @ManyToOne
     private Car car;
 
@@ -33,12 +33,12 @@ public class Application {
         this.id = id;
     }
 
-    public Klient getKlient() {
-        return klient;
+    public Client getClient() {
+        return client;
     }
 
-    public void setKlient(Klient klient) {
-        this.klient = klient;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Car getCar() {
@@ -61,7 +61,7 @@ public class Application {
     public String toString() {
         return "Application{" +
                 "id=" + id +
-                ", klient=" + klient +
+                ", klient=" + client +
                 ", car=" + car +
                 ", data=" + data +
                 '}';
