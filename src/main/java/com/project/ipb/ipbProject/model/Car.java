@@ -10,6 +10,9 @@ import java.util.List;
  */
 @Entity(name = "car")
 public class Car {
+
+    public enum FuelType { Diesel, Petrol, Gas }
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -17,11 +20,12 @@ public class Car {
 
     private String registrationNumber;
     private String brand;
-    private String fuelType;
+    @Enumerated
+    private FuelType fuelType;
     private double displacement; //pojemność skokowa
     private double standardPower; //moc seryjna
     private double standardTorque;
-    private double turbo;
+    private boolean ifTurbo;
 
     @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Application> applications;
@@ -53,11 +57,11 @@ public class Car {
         this.brand = marka;
     }
 
-    public String getFuelType() {
+    public FuelType getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(String rodzajPaliwa) {
+    public void setFuelType(FuelType rodzajPaliwa) {
         this.fuelType = rodzajPaliwa;
     }
 
@@ -85,12 +89,12 @@ public class Car {
         this.standardTorque = momentObrotowySeryjny;
     }
 
-    public double getTurbo() {
-        return turbo;
+    public boolean isIfTurbo() {
+        return ifTurbo;
     }
 
-    public void setTurbo(double turbo) {
-        this.turbo = turbo;
+    public void setIfTurbo(boolean ifTurbo) {
+        this.ifTurbo = ifTurbo;
     }
 
     public List<Application> getApplications() {
@@ -99,5 +103,20 @@ public class Car {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", brand='" + brand + '\'' +
+                ", fuelType=" + fuelType +
+                ", displacement=" + displacement +
+                ", standardPower=" + standardPower +
+                ", standardTorque=" + standardTorque +
+                ", ifTurbo=" + ifTurbo +
+                ", applications=" + applications +
+                '}';
     }
 }

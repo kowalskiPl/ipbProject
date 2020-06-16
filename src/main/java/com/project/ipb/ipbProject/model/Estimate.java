@@ -7,17 +7,26 @@ import java.util.List;
 
 @Entity(name = "estimate")
 public class Estimate {
+
+    public enum TuningType {mechanicalTuning, softwareTuning}
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
-
     private double cost;
-
+    @Enumerated
+    private TuningType tuningType;
     @ElementCollection
     private List<String> changedParts;
 
     public Estimate() {
+    }
+
+    public Estimate(TuningType tuningType, double cost, List<String> changedParts){
+        this.tuningType=tuningType;
+        this.cost=cost;
+        this.changedParts=changedParts;
     }
 
     public long getId() {
@@ -44,11 +53,20 @@ public class Estimate {
         this.changedParts = changedParts;
     }
 
+    public TuningType getTuningType() {
+        return tuningType;
+    }
+
+    public void setTuningType(TuningType tuningType) {
+        this.tuningType = tuningType;
+    }
+
     @Override
     public String toString() {
         return "Estimate{" +
                 "id=" + id +
                 ", cost=" + cost +
+                ", tuningType=" + tuningType +
                 ", changedParts=" + changedParts +
                 '}';
     }

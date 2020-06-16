@@ -26,7 +26,12 @@
         <mapping class="com.project.ipb.ipbProject.model.Car"/>
         <mapping class="com.project.ipb.ipbProject.model.security.Privilege"/>
         <mapping class="com.project.ipb.ipbProject.model.security.Role"/>
-<!--        <mapping class="com.project.ipb.ipbProject.model."/>-->
+        <mapping class="com.project.ipb.ipbProject.model.TechnicalEmployee"/>
+        <mapping class="com.project.ipb.ipbProject.model.OfficeWorker"/>
+        <mapping class="com.project.ipb.ipbProject.model.Measurement"/>
+        <mapping class="com.project.ipb.ipbProject.model.ExternalConditions"/>
+
+        <!--        <mapping class="com.project.ipb.ipbProject.model."/>-->
 
     </session-factory>
 </hibernate-configuration>
