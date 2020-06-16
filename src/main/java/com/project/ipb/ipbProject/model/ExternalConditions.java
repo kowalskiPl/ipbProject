@@ -3,12 +3,11 @@ package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity(name = "Measurement")
+@Entity(name = "ExternalConditions")
 public class ExternalConditions {
     @Id
     @GeneratedValue(generator = "increment")
@@ -18,9 +17,12 @@ public class ExternalConditions {
     private double temperatuere;
     private double humidity;
     private LocalDate date;
+    @OneToMany(mappedBy = "externalConditions", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Measurement> measurements;
 
     public ExternalConditions() {
     }
+
 
     public long getId() {
         return id;

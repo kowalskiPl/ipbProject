@@ -2,9 +2,7 @@ package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Measurement")
 public class Measurement {
@@ -17,8 +15,18 @@ public class Measurement {
     private double torque;
     private double oilTemperature;
     private double turboCompression;
+    @ManyToOne()
+    private ExternalConditions externalConditions;
 
     public Measurement() {
+    }
+
+    public void considerExternalConditions(){
+        /*
+         *
+         * class logic
+         *
+         */
     }
 
     public long getId() {
