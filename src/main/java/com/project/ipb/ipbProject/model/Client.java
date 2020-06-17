@@ -13,9 +13,13 @@ public class Client extends Person {
     private long id;
     private String adress;
     private String email;
-
     @OneToMany(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Application> applications;
+    @ManyToMany(mappedBy = "clients", cascade = CascadeType.ALL)
+    private List<TechnicalEmployee> technicalEmployees;
+
+    public Client() {
+    }
 
     public long getId() {
         return id;
@@ -47,6 +51,14 @@ public class Client extends Person {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public List<TechnicalEmployee> getTechnicalEmployees() {
+        return technicalEmployees;
+    }
+
+    public void setTechnicalEmployees(List<TechnicalEmployee> technicalEmployees) {
+        this.technicalEmployees = technicalEmployees;
     }
 
     @Override

@@ -32,7 +32,7 @@
         <mapping class="com.project.ipb.ipbProject.model.ExternalConditions"/>
         <mapping class="com.project.ipb.ipbProject.model.Repair"/>
         <mapping class="com.project.ipb.ipbProject.model.Modification"/>
-        <mapping class="com.project.ipb.ipbProject.model.TuningType"/>
+        <mapping class="com.project.ipb.ipbProject.model.Diagnosis"/>
         <!--<mapping class="com.project.ipb.ipbProject.model."/>-->
 
     </session-factory>

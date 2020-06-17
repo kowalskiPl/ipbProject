@@ -2,9 +2,8 @@ package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "TechnicalEmployee")
 public class TechnicalEmployee extends Person {
@@ -13,6 +12,10 @@ public class TechnicalEmployee extends Person {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
     private int company_id;
+    @ManyToMany(mappedBy = "technicalEmployees", cascade = CascadeType.ALL)
+    private List<Diagnosis> diagnoses;
+    @ManyToMany(mappedBy = "technicalEmployees", cascade = CascadeType.ALL)
+    private List<Client> clients;
 
     public TechnicalEmployee() {
     }
