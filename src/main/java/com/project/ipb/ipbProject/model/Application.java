@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity(name = "application")
 public class Application {
@@ -20,7 +21,7 @@ public class Application {
     @ManyToOne
     private Car car;
 
-    private Date data;
+    private LocalDate data;
 
     public Application() {
     }
@@ -49,11 +50,11 @@ public class Application {
         this.car = car;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

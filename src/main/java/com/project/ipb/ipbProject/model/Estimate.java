@@ -8,8 +8,6 @@ import java.util.List;
 @Entity(name = "estimate")
 public class Estimate {
 
-    public enum TuningType {mechanicalTuning, softwareTuning}
-
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")

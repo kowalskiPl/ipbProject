@@ -30,8 +30,10 @@
         <mapping class="com.project.ipb.ipbProject.model.OfficeWorker"/>
         <mapping class="com.project.ipb.ipbProject.model.Measurement"/>
         <mapping class="com.project.ipb.ipbProject.model.ExternalConditions"/>
-
-        <!--        <mapping class="com.project.ipb.ipbProject.model."/>-->
+        <mapping class="com.project.ipb.ipbProject.model.Repair"/>
+        <mapping class="com.project.ipb.ipbProject.model.Modification"/>
+        <mapping class="com.project.ipb.ipbProject.model.TuningType"/>
+        <!--<mapping class="com.project.ipb.ipbProject.model."/>-->
 
     </session-factory>
 </hibernate-configuration>

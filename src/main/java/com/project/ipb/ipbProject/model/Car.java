@@ -1,5 +1,6 @@
 package com.project.ipb.ipbProject.model;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,9 +27,14 @@ public class Car {
     private double standardPower; //moc seryjna
     private double standardTorque;
     private boolean ifTurbo;
-
     @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Application> applications;
+    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+    private List<Modification> modifications;
+    @ManyToMany(mappedBy = "cars",cascade = CascadeType.ALL)
+    private List<Repair> repairs;
+    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+    private List<Measurement> measurements;
 
     public Car() {
     }

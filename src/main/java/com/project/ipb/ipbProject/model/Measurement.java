@@ -3,6 +3,7 @@ package com.project.ipb.ipbProject.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "Measurement")
 public class Measurement {
@@ -17,6 +18,8 @@ public class Measurement {
     private double turboCompression;
     @ManyToOne()
     private ExternalConditions externalConditions;
+    @ManyToMany(mappedBy = "measurements", cascade = CascadeType.ALL)
+    private List<Car> cars;
 
     public Measurement() {
     }
