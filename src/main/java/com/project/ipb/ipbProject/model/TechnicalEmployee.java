@@ -15,7 +15,6 @@ public class TechnicalEmployee extends Person {
     private int company_id;
 
 
-
     public TechnicalEmployee() {
     }
 

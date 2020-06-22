@@ -1,7 +1,9 @@
 package com.project.ipb.ipbProject.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
+                .antMatchers("/hello", "/clientSubmit").access("hasRole('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -27,6 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
+
+//    @Autowired
+//    public void configure(AuthenticationManagerBuilder authenticationManager) throws Exception {
+//        authenticationManager.inMemoryAuthentication()
+//                .withUser("user").password("password").authorities("ROLE_USER")
+//                .and()
+//                .withUser("admin").password("admin").authorities("ROLE_USER", "ROLE_ADMIN");
+//    }
 
     @Bean
     @Override
@@ -42,9 +53,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 User.withDefaultPasswordEncoder()
                         .username("admin")
                         .password("password")
-                        .roles("USER")
+                        .roles("USER", "ADMIN")
                         .build();
 
         return new InMemoryUserDetailsManager(user, user1);
     }
+
+
 }

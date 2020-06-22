@@ -3,9 +3,11 @@ package com.project.ipb.ipbProject.controller;
 import com.project.ipb.ipbProject.hibernateTools.HibernateDBUtil;
 import com.project.ipb.ipbProject.hibernateTools.HibernateUtil;
 import com.project.ipb.ipbProject.model.Application;
+import com.project.ipb.ipbProject.model.Car;
 import com.project.ipb.ipbProject.model.Estimate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +29,23 @@ public class MainController {
     public HttpStatus insertApplication(@RequestBody Application application){
         HibernateDBUtil.insertApplication(application);
         return HttpStatus.OK;
+    }
+
+//    @RequestMapping(value = "/car", method = RequestMethod.PUT)
+//    public HttpStatus insertApplication(@RequestBody Car car){
+//        System.out.println(car);
+////        HibernateDBUtil.insertApplication(application);
+//        return HttpStatus.OK;
+//    }
+    @PostMapping("/car")
+    public String carSubmit(@ModelAttribute Car car){
+        return car.toString();
+    }
+
+    @GetMapping("/car")
+    public String greetingForm(Model model) {
+        model.addAttribute("car", new Car());
+        return "car";
     }
 
     @RequestMapping(value = "/application", method = RequestMethod.GET)

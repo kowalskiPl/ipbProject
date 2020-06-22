@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit car</title>
+</head>
+<body>
+<form action="#" th:action="@{/car}" th:object="${Car}" method="post">
+    <div><label>Registration number: <input type="text" name="registrationNumber"/> </label></div>
+    <div><label>Manufacturer: <input type="text" name="brand"/> </label></div>
+    <div><label>Fuel type: <select name="fuelType">
+        <option value="Diesel">Diesel</option>
+        <option value="Petrol">Petrol</option>
+        <option value="Gas">Gas</option>
+    </select> </label></div>
+    <div><label>Displacement: <input type="number" name="displacement"/> </label></div>
+    <div><label>Power: <input type="number" name="standardPower"/> </label></div>
+    <div><label>Torque: <input type="number" name="standardTorque"/> </label></div>
+    <div><label>Turbo <input type="checkbox" name="ifTurbo"/> </label></div>
+    <div><input type="submit" value="Submit"/></div>
+</form>
+</body>
+</html>
