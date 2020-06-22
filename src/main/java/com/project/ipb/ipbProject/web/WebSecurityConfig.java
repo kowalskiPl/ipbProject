@@ -1,5 +1,6 @@
 package com.project.ipb.ipbProject.web;
 
+import com.project.ipb.ipbProject.security.URLAuthenticationHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,29 +16,24 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/hello", "/clientSubmit").access("hasRole('USER')")
+                .antMatchers("/hello", "/clientSubmit", "/car").hasAuthority("USER")
+                .antMatchers("/helloAdmin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .successHandler(urlAuthenticationHandler())
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll();
     }
-
-//    @Autowired
-//    public void configure(AuthenticationManagerBuilder authenticationManager) throws Exception {
-//        authenticationManager.inMemoryAuthentication()
-//                .withUser("user").password("password").authorities("ROLE_USER")
-//                .and()
-//                .withUser("admin").password("admin").authorities("ROLE_USER", "ROLE_ADMIN");
-//    }
 
     @Bean
     @Override
@@ -46,17 +42,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
-                        .roles("USER")
+                        .roles("USER").authorities("USER")
                         .build();
 
         UserDetails user1 =
                 User.withDefaultPasswordEncoder()
                         .username("admin")
                         .password("password")
-                        .roles("USER", "ADMIN")
+                        .roles("USER", "ADMIN").authorities("USER", "ADMIN")
                         .build();
 
         return new InMemoryUserDetailsManager(user, user1);
+    }
+
+    @Bean
+    public URLAuthenticationHandler urlAuthenticationHandler(){
+        return new URLAuthenticationHandler();
     }
 
 

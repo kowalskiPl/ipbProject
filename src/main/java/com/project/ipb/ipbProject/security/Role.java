@@ -1,15 +1,13 @@
-package com.project.ipb.ipbProject.model.security;
+package com.project.ipb.ipbProject.security;
 
+import com.project.ipb.ipbProject.model.Person;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
-@Entity(name = "privilege")
-public class Privilege {
+@Entity(name = "role")
+public class Role {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -17,11 +15,10 @@ public class Privilege {
 
     private String name;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Person> users;
 
-    @ManyToMany()
-    private Collection<Role> roles;
-
-    public Privilege() {
+    public Role() {
     }
 
     public long getId() {
@@ -40,11 +37,11 @@ public class Privilege {
         this.name = name;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public Collection<Person> getUsers() {
+        return users;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
+    public void setUsers(Collection<Person> users) {
+        this.users = users;
     }
 }

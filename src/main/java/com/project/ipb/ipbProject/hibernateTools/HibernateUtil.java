@@ -1,7 +1,5 @@
 package com.project.ipb.ipbProject.hibernateTools;
 
-import com.project.ipb.ipbProject.model.security.Privilege;
-import com.project.ipb.ipbProject.model.security.Role;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

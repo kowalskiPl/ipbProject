@@ -9,7 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.text.html.HTML;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -37,15 +40,24 @@ public class MainController {
 ////        HibernateDBUtil.insertApplication(application);
 //        return HttpStatus.OK;
 //    }
+
     @PostMapping("/car")
-    public String carSubmit(@ModelAttribute Car car){
-        return car.toString();
+    public ModelAndView carSubmit(@ModelAttribute Car Car) throws IOException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("car");
+        return modelAndView;
     }
 
-    @GetMapping("/car")
-    public String greetingForm(Model model) {
-        model.addAttribute("car", new Car());
-        return "car";
+//    @GetMapping("/car")
+//    @ResponseBody
+//    public String greetingForm(Model model) {
+//        model.addAttribute("car", new Car());
+//        return "car";
+//    }
+
+    @PostMapping("/application")
+    public String applicationSubmit(@ModelAttribute Application application){
+        return application.toString();
     }
 
     @RequestMapping(value = "/application", method = RequestMethod.GET)
