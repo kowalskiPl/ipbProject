@@ -1,17 +1,15 @@
 package com.project.ipb.ipbProject.controller;
 
 import com.project.ipb.ipbProject.hibernateTools.HibernateDBUtil;
-import com.project.ipb.ipbProject.hibernateTools.HibernateUtil;
 import com.project.ipb.ipbProject.model.Application;
 import com.project.ipb.ipbProject.model.Car;
+import com.project.ipb.ipbProject.model.Client;
 import com.project.ipb.ipbProject.model.Estimate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.swing.text.html.HTML;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,6 +32,7 @@ public class MainController {
         return HttpStatus.OK;
     }
 
+
 //    @RequestMapping(value = "/car", method = RequestMethod.PUT)
 //    public HttpStatus insertApplication(@RequestBody Car car){
 //        System.out.println(car);
@@ -41,10 +40,12 @@ public class MainController {
 //        return HttpStatus.OK;
 //    }
 
-    @PostMapping("/car")
-    public ModelAndView carSubmit(@ModelAttribute Car Car) throws IOException {
+    @PostMapping("/carSubmit")
+    public ModelAndView carSubmit(@ModelAttribute Car car) throws IOException {
+        Application application = new Application();
+        application.setClient(new Client("Frank", "Klepacki"));
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("car");
+        modelAndView.setViewName("carSubmit");
         return modelAndView;
     }
 
@@ -55,8 +56,8 @@ public class MainController {
 //        return "car";
 //    }
 
-    @PostMapping("/application")
-    public String applicationSubmit(@ModelAttribute Application application){
+    @PostMapping("/applicationSubmit")
+    public String applicationSubmit(@ModelAttribute Application application, @ModelAttribute Car car){
         return application.toString();
     }
 

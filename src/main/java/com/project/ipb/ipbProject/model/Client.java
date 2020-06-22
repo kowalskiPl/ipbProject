@@ -1,5 +1,6 @@
 package com.project.ipb.ipbProject.model;
 
+import javafx.scene.shape.VLineTo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,6 +19,11 @@ public class Client extends Person {
 
 
     public Client() {
+    }
+
+    public Client(String name, String surname){
+        this.name = name;
+        this.surname = surname;
     }
 
     public long getId() {
