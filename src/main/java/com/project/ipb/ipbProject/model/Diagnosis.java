@@ -18,8 +18,7 @@ public class Diagnosis {
     private CurrentState currentState;
     @Transient
     private boolean ifTune;
-    @ManyToMany(mappedBy = "diagnoses", cascade = CascadeType.ALL)
-    private List<TechnicalEmployee> technicalEmployees;
+
 
     public Diagnosis() {
     }
@@ -48,13 +47,6 @@ public class Diagnosis {
         this.ifTune = ifTune;
     }
 
-    public List<TechnicalEmployee> getTechnicalEmployees() {
-        return technicalEmployees;
-    }
-
-    public void setTechnicalEmployees(List<TechnicalEmployee> technicalEmployees) {
-        this.technicalEmployees = technicalEmployees;
-    }
 
     @Override
     public String toString() {
@@ -62,7 +54,6 @@ public class Diagnosis {
                 "id=" + id +
                 ", currentState=" + currentState +
                 ", ifTune=" + ifTune +
-                ", technicalEmployees=" + technicalEmployees +
                 '}';
     }
 }

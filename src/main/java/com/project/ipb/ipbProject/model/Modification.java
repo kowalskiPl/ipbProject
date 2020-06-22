@@ -11,16 +11,21 @@ public class Modification {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
+
     @Enumerated
     private TuningType tuningType;
+
     @ElementCollection
     private List<String> changedParts;
+
     @Transient
     private double powerIncrease;
+
     @Transient
     private double torqueIncrease;
-    @ManyToMany(mappedBy = "modifications", cascade = CascadeType.ALL)
-    private List<Car> cars;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Car car;
 
     public Modification() {
     }
@@ -65,12 +70,12 @@ public class Modification {
         this.torqueIncrease = torqueIncrease;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override

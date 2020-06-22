@@ -11,11 +11,10 @@ public class TechnicalEmployee extends Person {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
+
     private int company_id;
-    @ManyToMany(mappedBy = "technicalEmployees", cascade = CascadeType.ALL)
-    private List<Diagnosis> diagnoses;
-    @ManyToMany(mappedBy = "technicalEmployees", cascade = CascadeType.ALL)
-    private List<Client> clients;
+
+
 
     public TechnicalEmployee() {
     }

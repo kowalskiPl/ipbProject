@@ -17,6 +17,7 @@ public class ExternalConditions {
     private double temperatuere;
     private double humidity;
     private LocalDate date;
+
     @OneToMany(mappedBy = "externalConditions", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Measurement> measurements;
 

@@ -14,14 +14,18 @@ public class Repair {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
     private int repairID;
+
     @ElementCollection
     private List<String> damagedParts;
+
     private LocalDate startRepair;
     private LocalDate endRepair;
+
     @Transient
     private long durationRepair;
-    @ManyToMany(mappedBy = "repairs",cascade = CascadeType.ALL)
-    private List<Car> cars;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Car car;
 
     public Repair() {
     }
@@ -76,12 +80,12 @@ public class Repair {
         this.durationRepair = durationRepair;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override

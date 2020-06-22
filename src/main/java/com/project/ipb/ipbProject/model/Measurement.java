@@ -16,10 +16,12 @@ public class Measurement {
     private double torque;
     private double oilTemperature;
     private double turboCompression;
+
     @ManyToOne()
     private ExternalConditions externalConditions;
-    @ManyToMany(mappedBy = "measurements", cascade = CascadeType.ALL)
-    private List<Car> cars;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Car car;
 
     public Measurement() {
     }

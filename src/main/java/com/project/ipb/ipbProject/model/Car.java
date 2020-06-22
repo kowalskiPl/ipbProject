@@ -1,13 +1,12 @@
 package com.project.ipb.ipbProject.model;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
 
 /**
- * Class containing car characteristics, in Polish to keep the same as in documentation
+ * Class containing car characteristics
  */
 @Entity(name = "car")
 public class Car {
@@ -21,19 +20,25 @@ public class Car {
 
     private String registrationNumber;
     private String brand;
+
     @Enumerated
     private FuelType fuelType;
+
     private double displacement; //pojemność skokowa
     private double standardPower; //moc seryjna
     private double standardTorque;
     private boolean ifTurbo;
+
     @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Application> applications;
-    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Modification> modifications;
-    @ManyToMany(mappedBy = "cars",cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Repair> repairs;
-    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Measurement> measurements;
 
     public Car() {
