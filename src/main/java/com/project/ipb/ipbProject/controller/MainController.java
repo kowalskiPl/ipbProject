@@ -83,7 +83,7 @@ public class MainController {
     }
 
     //application endpoint for now at least
-    @RequestMapping(value = "/tune", method = RequestMethod.GET)
+    @RequestMapping(value = "/tune", method = RequestMethod.POST)
     public ResponseEntity<Car> tune(@RequestParam(name = "applicationId")long id){
 //        Application app = HibernateDBUtil.getApplication(id);
         return new ResponseEntity<>(HibernateDBUtil.getApplication(id).getCar(), HttpStatus.OK);

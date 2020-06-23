@@ -27,6 +27,7 @@
             <td th:text="${applicationList.get(iter.count - 1).canBeTuned}"></td>
             <td th:switch="${applicationList.get(iter.count - 1).status}">
                 <span th:case="${T(com.project.ipb.ipbProject.model.Status).PreparedForTuning}">Repaired, waiting for client response</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ToRepair}">Waiting for client decision</span>
                 <span th:case="${T(com.project.ipb.ipbProject.model.Status).NotReady}">
                     <form th:action="@{/ready}" method="post">
                         <input type="submit" value="Make it ready"/>
@@ -35,7 +36,7 @@
                 </span>
                 <span th:case="${T(com.project.ipb.ipbProject.model.Status).SendForTuning}">
                     Ready to tune
-                    <form th:action="@{/tune(applicationId=${iter.count})}" method="get">
+                    <form th:action="@{/tune(applicationId=${iter.count})}" method="post">
                          <input type="submit" value="Send for tuning"/>
                     </form>
                 </span>

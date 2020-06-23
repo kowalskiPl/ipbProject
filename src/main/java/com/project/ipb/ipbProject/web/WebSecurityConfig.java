@@ -1,10 +1,8 @@
 package com.project.ipb.ipbProject.web;
 
 import com.project.ipb.ipbProject.security.URLAuthenticationHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,8 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .antMatchers("/hello", "/clientSubmit", "/car").hasAuthority("USER")
-                .antMatchers("/helloAdmin").hasAuthority("ADMIN")
+                .antMatchers("/hello", "/clientSubmit", "/car", "/myApplications").hasAuthority("USER")
+                .antMatchers("/helloAdmin", "/applicationList").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
