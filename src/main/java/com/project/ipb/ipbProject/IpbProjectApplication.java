@@ -27,21 +27,7 @@ public class IpbProjectApplication {
 		HibernateDBUtil.createApplication(1, a, new Car("ABC34E", "Ford",
 				Car.FuelType.Diesel, 14.2, 123.2, 1232.1, true));
 		System.out.println(HibernateDBUtil.getApplications().get(0).getClient().toString());
-//		Session session = HibernateUtil.getSessionFactory().openSession();
-//		Estimate estimate = new Estimate();
-//		estimate.setCost(124.45);
-//		session.beginTransaction();
-//		session.save(estimate);
-//
-//
-//		Estimate estimate1 = new Estimate();
-//		estimate1.setCost(245.12);
-//		session.save(estimate1);
-//		session.getTransaction().commit();
-////		List<Estimate> list = session.createQuery("from estimate").list();
-////		System.out.println(list);
-////
-//		session.close();
+
 	}
 
 }

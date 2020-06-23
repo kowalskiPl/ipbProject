@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modification confirmation</title>
+</head>
+<body>
+<h1>Thank you for your confirmation</h1>
+<h2>Your car is in the best hands :D</h2>
+<td><form th:action="@{/myApplications}" method="get">
+    <input type="submit" value="Return to precious page"/>
+</form></td>
+<td><form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form></td>
+
+</body>
+</html>

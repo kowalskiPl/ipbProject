@@ -1,13 +1,9 @@
 package com.project.ipb.ipbProject.hibernateTools;
 
-import com.project.ipb.ipbProject.model.Application;
-import com.project.ipb.ipbProject.model.Car;
-import com.project.ipb.ipbProject.model.Client;
-import com.project.ipb.ipbProject.model.Estimate;
+import com.project.ipb.ipbProject.model.*;
 import org.hibernate.Session;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * A class containing database connection functions
@@ -79,6 +75,23 @@ public class HibernateDBUtil {
     public static List<Application> getApplications(){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from application ", Application.class).list();
+        }
+    }
+
+    public static List<Application> getApplications(long clientId){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from application ap where ap.client.id = :id", Application.class)
+                    .setParameter("id", clientId).list();
+        }
+    }
+
+    public static void makeItModified(long applicationId){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Application application = getApplication(applicationId);
+            application.setStatus(Status.PreparedForTuning);
+            session.update(application);
+            session.getTransaction().commit();
         }
     }
 }

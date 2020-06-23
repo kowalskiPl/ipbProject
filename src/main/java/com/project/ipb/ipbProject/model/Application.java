@@ -3,11 +3,11 @@ package com.project.ipb.ipbProject.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "application")
 public class Application {
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -23,6 +23,8 @@ public class Application {
 
     private boolean canBeTuned = true;
 
+    private Status status = Status.PreparedForTuning;
+
     public Application() {
     }
 
@@ -36,6 +38,14 @@ public class Application {
 
     public void setCanBeTuned(boolean canBeTuned) {
         this.canBeTuned = canBeTuned;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public long getId() {

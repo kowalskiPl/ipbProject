@@ -35,30 +35,15 @@ public class MainController {
         return HttpStatus.OK;
     }
 
-
-//    @RequestMapping(value = "/car", method = RequestMethod.PUT)
-//    public HttpStatus insertApplication(@RequestBody Car car){
-//        System.out.println(car);
-////        HibernateDBUtil.insertApplication(application);
-//        return HttpStatus.OK;
-//    }
-
     @PostMapping("/carSubmit")
     public ModelAndView carSubmit(@ModelAttribute Car car) throws IOException {
         Application application = new Application();
         application.setDate(new Date());
-        HibernateDBUtil.createApplication(1, application, car);
+        HibernateDBUtil.createApplication(1, application, car); //lmao hard code
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("carSubmit");
         return modelAndView;
     }
-
-//    @GetMapping("/car")
-//    @ResponseBody
-//    public String greetingForm(Model model) {
-//        model.addAttribute("car", new Car());
-//        return "car";
-//    }
 
     @RequestMapping("/applicationList")
     public ModelAndView applicationList(Model model){
@@ -74,9 +59,20 @@ public class MainController {
         return application.toString();
     }
 
-    @RequestMapping(value = "/application", method = RequestMethod.GET)
-    public ResponseEntity<Application> insertApplication(@RequestParam(name = "applicationid") long applicationId){
-        return new ResponseEntity<>(HibernateDBUtil.getApplication(applicationId), HttpStatus.OK);
-        //TODO: make new application insertion with client and the car
+    @RequestMapping(value = "/myApplications", method = RequestMethod.GET)
+    public ModelAndView myApplications(Model model){
+        List<Application> applications = HibernateDBUtil.getApplications(1); //KEKW hard code rofl shoot me pls
+        model.addAttribute("applicationList", applications);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("myApplications");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/makeItModified", method = RequestMethod.POST)
+    public ModelAndView makeItModified(@RequestParam(name = "applicationId")long id){
+        HibernateDBUtil.makeItModified(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("makeItModified");
+        return modelAndView;
     }
 }
