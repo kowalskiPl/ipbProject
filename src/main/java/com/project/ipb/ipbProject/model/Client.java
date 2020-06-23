@@ -1,7 +1,10 @@
 package com.project.ipb.ipbProject.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javafx.scene.shape.VLineTo;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +19,7 @@ public class Client extends Person {
     private String email;
 
     @OneToMany(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Application> applications;
 
 
@@ -50,7 +54,7 @@ public class Client extends Person {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @JsonManagedReference
     public List<Application> getApplications() {
         return applications;
     }

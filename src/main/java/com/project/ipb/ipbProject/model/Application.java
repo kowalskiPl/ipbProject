@@ -1,5 +1,7 @@
 package com.project.ipb.ipbProject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -23,7 +25,7 @@ public class Application {
 
     private boolean canBeTuned = true;
 
-    private Status status = Status.PreparedForTuning;
+    private Status status = Status.ToRepair;
 
     public Application() {
     }
@@ -56,6 +58,7 @@ public class Application {
         this.id = id;
     }
 
+    @JsonBackReference
     public Client getClient() {
         return client;
     }
@@ -64,6 +67,7 @@ public class Application {
         this.client = client;
     }
 
+    @JsonBackReference
     public Car getCar() {
         return car;
     }

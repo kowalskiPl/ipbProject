@@ -16,7 +16,6 @@
             <th>Model</th>
             <th>Can be modified</th>
             <th>Status</th>
-            <th>Do something</th>
         </tr>
         <tr th:each="Application, iter :${applicationList}">
             <td th:text="${applicationList.get(iter.count - 1).id}"></td>
@@ -27,19 +26,34 @@
             <td th:text="${applicationList.get(iter.count - 1).car.brand}"></td>
             <td th:text="${applicationList.get(iter.count - 1).canBeTuned}"></td>
             <td th:switch="${applicationList.get(iter.count - 1).status}">
-                <span th:case="${T(com.project.ipb.ipbProject.model.Status).NotReady}">KEKW</span>
-                <span th:case="${T(com.project.ipb.ipbProject.model.Status).PreparedForTuning}">
-                    <form th:action="@{/logout}" method="post">
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).PreparedForTuning}">Repaired, waiting for client response</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).NotReady}">
+                    <form th:action="@{/ready}" method="post">
+                        <input type="submit" value="Make it ready"/>
+                    </form>
+                    It ain't ready
+                </span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).SendForTuning}">
+                    Ready to tune
+                    <form th:action="@{/tune(applicationId=${iter.count})}" method="get">
                          <input type="submit" value="Send for tuning"/>
                     </form>
                 </span>
-                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ToRepair}">RIP</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ReadyToRepair}">Ready to repair
+                    <form th:action="@{/repair(applicationId=${iter.count})}" method="post">
+                        <input type="submit" value="Send to repair"/>
+                    </form>
+                </span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).TuningInProgress}">We're working on it</span>
             </td>
-            <td><form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form></td>
         </tr>
     </table>
+    <form th:action="@{/helloAdmin}" method="get">
+        <input type="submit" value="Go back"/>
+    </form>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 </body>
 </html>

@@ -80,16 +80,38 @@ public class HibernateDBUtil {
 
     public static List<Application> getApplications(long clientId){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from application ap where ap.client.id = :id", Application.class)
+            List<Application> result = session.createQuery("from application ap where ap.client.id = :id", Application.class)
                     .setParameter("id", clientId).list();
+            System.out.println(result);
+            return result;
         }
     }
 
-    public static void makeItModified(long applicationId){
+    public static void sendCarForTuning(long applicationId){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Application application = getApplication(applicationId);
+            application.setStatus(Status.SendForTuning);
+            session.update(application);
+            session.getTransaction().commit();
+        }
+    }
+
+    public static void repairTheCar(long applicationId){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             Application application = getApplication(applicationId);
             application.setStatus(Status.PreparedForTuning);
+            session.update(application);
+            session.getTransaction().commit();
+        }
+    }
+
+    public static void makeTheCarGoToRepair(long applicationId){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Application application = getApplication(applicationId);
+            application.setStatus(Status.ReadyToRepair);
             session.update(application);
             session.getTransaction().commit();
         }

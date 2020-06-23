@@ -1,3 +1,3 @@
 package com.project.ipb.ipbProject.model;
 
-public enum Status{PreparedForTuning, ToRepair, NotReady}
+public enum Status{PreparedForTuning, ToRepair, NotReady, ReadyToRepair, SendForTuning, TuningInProgress}

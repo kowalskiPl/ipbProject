@@ -3,14 +3,12 @@ package com.project.ipb.ipbProject.controller;
 import com.project.ipb.ipbProject.hibernateTools.HibernateDBUtil;
 import com.project.ipb.ipbProject.model.Application;
 import com.project.ipb.ipbProject.model.Car;
-import com.project.ipb.ipbProject.model.Client;
 import com.project.ipb.ipbProject.model.Estimate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import java.io.IOException;
 import java.util.Date;
@@ -70,9 +68,32 @@ public class MainController {
 
     @RequestMapping(value = "/makeItModified", method = RequestMethod.POST)
     public ModelAndView makeItModified(@RequestParam(name = "applicationId")long id){
-        HibernateDBUtil.makeItModified(id);
+        HibernateDBUtil.sendCarForTuning(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("makeItModified");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/repair", method = RequestMethod.POST)
+    public ModelAndView repair(@RequestParam(name = "applicationId")long id){
+        HibernateDBUtil.repairTheCar(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("repair");
+        return modelAndView;
+    }
+
+    //application endpoint for now at least
+    @RequestMapping(value = "/tune", method = RequestMethod.GET)
+    public ResponseEntity<Car> tune(@RequestParam(name = "applicationId")long id){
+//        Application app = HibernateDBUtil.getApplication(id);
+        return new ResponseEntity<>(HibernateDBUtil.getApplication(id).getCar(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/IWantItWorking", method = RequestMethod.POST)
+    public ModelAndView iWantItWorking(@RequestParam(name = "applicationId")long id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("IWantItWorking");
+        HibernateDBUtil.makeTheCarGoToRepair(id);
         return modelAndView;
     }
 }

@@ -12,9 +12,7 @@
             <th>Date</th>
             <th>Registration number</th>
             <th>Model</th>
-            <th>Can be modified</th>
             <th>Status</th>
-            <th>Check modifications</th>
         </tr>
         <tr th:each="Application, iter :${applicationList}">
             <td th:text="${applicationList.get(iter.count - 1).id}"></td>
@@ -23,21 +21,26 @@
             <td th:text="${applicationList.get(iter.count - 1).car.brand}"></td>
             <td th:switch="${applicationList.get(iter.count - 1).status}">
                 <span th:case="${T(com.project.ipb.ipbProject.model.Status).NotReady}">It's not ready my dude</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).TuningInProgress}">Car is getting upgraded</span>
                 <span th:case="${T(com.project.ipb.ipbProject.model.Status).PreparedForTuning}">Ready to tune
                     <form th:action="@{/makeItModified(applicationId=${iter.count})}" method="post">
                     <input type="submit" value="I want it modified"/>
                     </form>
                 </span>
-                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ToRepair}">RIP</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ToRepair}">
+                    Send it to repair
+                    <form th:action="@{/IWantItWorking(applicationId=${iter.count})}" method="post">
+                    <input type="submit" value="I want it repaired"/>
+                    </form>
+                </span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).TuningInProgress}">Your blyatmobil is upgrading</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).SendForTuning}">Your car is waiting for upgrade</span>
+                <span th:case="${T(com.project.ipb.ipbProject.model.Status).ReadyToRepair}">Your car is waiting to be repaired</span>
             </td>
-            <td th:text="${applicationList.get(iter.count - 1).canBeTuned}"></td>
-            <td><form th:action="@{/logout}" method="post">
-                <input type="submit" value="I want it modified"/>
-            </form></td>
         </tr>
     </table>
 </div>
-<form th:action="@{/hello}" method="post">
+<form th:action="@{/hello}" method="get">
     <input type="submit" value="Go back"/>
 </form>
 <form th:action="@{/logout}" method="post">

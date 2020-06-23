@@ -1,5 +1,7 @@
 package com.project.ipb.ipbProject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -124,7 +126,7 @@ public class Car {
     public void setIfTurbo(boolean ifTurbo) {
         this.ifTurbo = ifTurbo;
     }
-
+    @JsonManagedReference
     public List<Application> getApplications() {
         return applications;
     }

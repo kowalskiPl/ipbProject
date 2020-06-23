@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>We will make this work</title>
+</head>
+<body>
+<h1>Your car will be like new!</h1>
+<form th:action="@{/myApplications}" method="get">
+    <input type="submit" value="Go back"/>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Log out"/>
+</form>
+</body>
+</html>
