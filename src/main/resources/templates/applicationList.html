@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <table>
+        <tr>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Registration number</th>
+            <th>Model</th>
+            <th>Can be modified</th>
+        </tr>
+        <tr th:each="Application, iter :${applicationList}">
+            <td th:text="${applicationList.get(iter.count - 1).id}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).date}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).client.name}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).client.surname}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).car.registrationNumber}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).car.brand}"></td>
+            <td th:text="${applicationList.get(iter.count - 1).canBeTuned}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

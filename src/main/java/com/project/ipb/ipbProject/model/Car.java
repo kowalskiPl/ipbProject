@@ -1,8 +1,11 @@
 package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,18 +33,32 @@ public class Car {
     private boolean ifTurbo;
 
     @OneToMany(mappedBy = "car", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<Application> applications;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Application> applications = new ArrayList<>();
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Modification> modifications;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Modification> modifications= new ArrayList<>();
 
     @OneToMany(mappedBy = "car",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Repair> repairs;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Repair> repairs = new ArrayList<>();
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Measurement> measurements;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Measurement> measurements = new ArrayList<>();
 
     public Car() {
+    }
+
+    public Car(String registrationNumber, String brand, FuelType fuelType, double displacement, double standardPower, double standardTorque, boolean ifTurbo) {
+        this.registrationNumber = registrationNumber;
+        this.brand = brand;
+        this.fuelType = fuelType;
+        this.displacement = displacement;
+        this.standardPower = standardPower;
+        this.standardTorque = standardTorque;
+        this.ifTurbo = ifTurbo;
     }
 
     public long getId() {
@@ -127,7 +144,6 @@ public class Car {
                 ", standardPower=" + standardPower +
                 ", standardTorque=" + standardTorque +
                 ", ifTurbo=" + ifTurbo +
-                ", applications=" + applications +
                 '}';
     }
 }

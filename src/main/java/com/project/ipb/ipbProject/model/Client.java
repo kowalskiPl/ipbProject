@@ -14,6 +14,7 @@ public class Client extends Person {
     private long id;
     private String adress;
     private String email;
+
     @OneToMany(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Application> applications;
 

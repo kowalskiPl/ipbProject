@@ -2,12 +2,9 @@ package com.project.ipb.ipbProject.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.sql.Date;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(name = "application")
 public class Application {
@@ -21,9 +18,24 @@ public class Application {
     @ManyToOne
     private Car car;
 
-    private LocalDate data;
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    private boolean canBeTuned = true;
 
     public Application() {
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public boolean isCanBeTuned() {
+        return canBeTuned;
+    }
+
+    public void setCanBeTuned(boolean canBeTuned) {
+        this.canBeTuned = canBeTuned;
     }
 
     public long getId() {
@@ -50,12 +62,8 @@ public class Application {
         this.car = car;
     }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
 
@@ -66,7 +74,7 @@ public class Application {
                 "id=" + id +
                 ", klient=" + client +
                 ", car=" + car +
-                ", data=" + data +
+                ", date=" + date +
                 '}';
     }
 }

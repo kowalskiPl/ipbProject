@@ -7,10 +7,13 @@ import com.project.ipb.ipbProject.model.Client;
 import com.project.ipb.ipbProject.model.Estimate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -43,7 +46,8 @@ public class MainController {
     @PostMapping("/carSubmit")
     public ModelAndView carSubmit(@ModelAttribute Car car) throws IOException {
         Application application = new Application();
-        application.setClient(new Client("Frank", "Klepacki"));
+        application.setDate(new Date());
+        HibernateDBUtil.createApplication(1, application, car);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("carSubmit");
         return modelAndView;
@@ -55,6 +59,15 @@ public class MainController {
 //        model.addAttribute("car", new Car());
 //        return "car";
 //    }
+
+    @RequestMapping("/applicationList")
+    public ModelAndView applicationList(Model model){
+        List<Application> applications = HibernateDBUtil.getApplications();
+        model.addAttribute("applicationList", applications);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("applicationList");
+        return modelAndView;
+    }
 
     @PostMapping("/applicationSubmit")
     public String applicationSubmit(@ModelAttribute Application application, @ModelAttribute Car car){
